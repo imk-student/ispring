@@ -1,7 +1,9 @@
 const http = require('http');
+const fs = require("node:fs");
 
 const server =  http.createServer(function(request, response){
-    response.end("qq");
+    const html = fs.readFileSync("./index.html", "utf-8");
+    response.end(html);
 });
 
 server.listen(3000);
