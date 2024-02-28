@@ -4,8 +4,8 @@ type Student = {
     age: number;
 }
 
-type FilterTypes<Type, DesiredType> = {
-    [eachKey in keyof Type as Type[eachKey] extends DesiredType ? never : eachKey]: Type[eachKey]
+type FilterTypes<Type, RequiredType> = {
+    [eachKey in keyof Type as Type[eachKey] extends RequiredType ? never : eachKey]: Type[eachKey]
 }
 
 type FilteredType = FilterTypes<Student, number>

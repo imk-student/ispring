@@ -8,6 +8,13 @@ class treeNode {
         this.leftChild = null;
         this.rightChild = null;
     }
+
+    height(): number {
+        return 1 + Math.max(
+            this.leftChild !== null ? this.leftChild.height() : -1,
+            this.rightChild !== null ? this.rightChild.height() : -1
+        )
+    }
 }
 
 class myBinaryTree {
@@ -16,6 +23,7 @@ class myBinaryTree {
     constructor() {
         this.parent = null;
     }
+    
 
     insert(data: number) {
         let newNode = new treeNode(data);
@@ -24,6 +32,10 @@ class myBinaryTree {
         } else {
             this.insertNode(this.parent, newNode);
         }
+    }
+
+    treeHeight(): number{
+        return this.parent === null ? -1 : this.parent.height()
     }
 
     protected insertNode(treeNode: treeNode, newNode: treeNode) {
@@ -96,6 +108,7 @@ class myBinaryTree {
             return treeNode
         }
     }
+    
 }
 
 let tree = new myBinaryTree()
@@ -109,3 +122,4 @@ console.log(tree)
 tree.remove(20)
 console.log(tree)
 console.log(tree.search(tree.parent,44))
+console.log(tree.treeHeight())

@@ -4,6 +4,13 @@ class Node {
         this.leftChild = null;
         this.rightChild = null;
     }
+
+    height() {
+        return 1 + Math.max(
+            this.leftChild !== null ? this.leftChild.height() : -1,
+            this.rightChild !== null ? this.rightChild.height() : -1
+        )
+    }
 }
 
 class BinaryTree {
@@ -90,6 +97,10 @@ class BinaryTree {
             node.rightChild = this.removeNode(node.rightChild, newNode.data)
             return node
         }
+    }
+
+    treeHeight(){
+        return this.parent === null ? -1 : this.parent.height()
     }
 }
 
