@@ -1,9 +1,9 @@
-class treeNode {
-    data: number;
-    leftChild: treeNode | null;
-    rightChild: treeNode | null;
+class treeNode <T> {
+    data: T;
+    leftChild: treeNode<T> | null;
+    rightChild: treeNode<T> | null;
 
-    constructor(data: number) {
+    constructor(data: T) {
         this.data = data;
         this.leftChild = null;
         this.rightChild = null;
@@ -17,15 +17,15 @@ class treeNode {
     }
 }
 
-class myBinaryTree {
-    parent: treeNode | null;
+class myBinaryTree <T> {
+    parent: treeNode<T> | null;
 
     constructor() {
         this.parent = null;
     }
     
 
-    insert(data: number) {
+    insert(data: T) {
         let newNode = new treeNode(data);
         if (this.parent === null) {
             this.parent = newNode;
@@ -38,7 +38,7 @@ class myBinaryTree {
         return this.parent === null ? -1 : this.parent.height()
     }
 
-    protected insertNode(treeNode: treeNode, newNode: treeNode) {
+    protected insertNode(treeNode: treeNode<T>, newNode: treeNode<T>) {
         if (newNode.data < treeNode.data) {
             if (treeNode.leftChild === null) {
                 treeNode.leftChild = newNode;
@@ -54,7 +54,7 @@ class myBinaryTree {
         }
     }
 
-    search(treeNode: treeNode | null, data: number): treeNode | null {
+    search(treeNode: treeNode<T> | null, data: T): treeNode<T> | null {
         if (treeNode === null) {
             return null;
         }
@@ -68,18 +68,18 @@ class myBinaryTree {
         return treeNode;
     }
 
-    minNode(treeNode: treeNode): treeNode {
+    minNode(treeNode: treeNode<T>): treeNode<T> {
         if (treeNode.leftChild === null)
             return treeNode
         else 
             return this.minNode(treeNode.leftChild)
     }
 
-    remove(data: number) {
+    remove(data: T) {
         this.parent = this.removeNode(this.parent, data)
     }
 
-    protected removeNode(treeNode: treeNode | null, data: number): treeNode | null {
+    protected removeNode(treeNode: treeNode<T> | null, data: T): treeNode<T> | null {
         if (treeNode === null) {
             return null
         } else if (data < treeNode.data) {
@@ -111,7 +111,7 @@ class myBinaryTree {
     
 }
 
-let tree = new myBinaryTree()
+let tree = new myBinaryTree<number>()
 tree.insert(11)
 tree.insert(8)
 tree.insert(20)
